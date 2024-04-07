@@ -1,0 +1,71 @@
+{% load menu_tags %}
+
+<html>
+<head>
+    <title>{{ page.title }}</title>
+    <style>
+        header {
+            font-size: 36px;
+        }
+
+        /* Стили для меню */
+        #main_menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #main_menu li {
+            margin-bottom: 10px;
+        }
+        #main_menu a {
+            text-decoration: none;
+            color: black;
+            display: block; /* Чтобы ссылка занимала всю ширину родительского элемента */
+            padding: 5px; /* Добавим отступы, чтобы элемент был более кликабельным */
+        }
+        #main_menu li ul {
+            display: none;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        #main_menu li:hover > ul {
+            display: block;
+        }
+        /* Стили для выделения при наведении */
+        #main_menu a:hover,
+        #main_menu li:hover > a:hover {
+            background-color: yellow;
+        }
+
+        #main_menu a:hover,
+        #main_menu li:hover {
+            background-color: #f0f0f0;
+        }
+
+        #main_menu ul ul {
+        display: none;
+        }
+
+        #main_menu ul li.active > ul {
+        display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main_menu">
+      <ul>
+        {% for item in main_menu_items %}
+            {% include "menu_item.html" with item=item %}
+        {% endfor %}
+
+      </ul>
+    </div>
+
+
+    <header>{{ page.title }}</header>
+    <p>{{ page.content }}</p>
+</body>
+</html>
+
+
+

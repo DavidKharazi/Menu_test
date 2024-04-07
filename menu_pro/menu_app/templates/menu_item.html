@@ -1,0 +1,12 @@
+<li class="{% if item.slug == page.slug or item in page.get_ancestors %}active{% endif %}">
+    <a href="/menu_app/{{ item.slug }}/">{{ item.title }}</a>
+    {% if item.children.exists %}
+        <ul>
+            {% for child in item.children.all %}
+                {% include "menu_item.html" with item=child %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
+
+

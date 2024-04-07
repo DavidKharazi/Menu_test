@@ -1,0 +1,12 @@
+<!-- submenu.html -->
+<ul>
+    {% for child_item in children %}
+        <li class="{% if child_item.children.exists %}has-submenu{% endif %}">
+            <a href="/menu_app/{{ child_item.slug }}">{{ child_item.title }}</a>
+            {% if child_item.children.exists %}
+                {% include "submenu.html" with children=child_item.children.all %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
